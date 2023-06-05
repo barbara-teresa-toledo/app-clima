@@ -1,15 +1,9 @@
 import { LinearGradient } from "expo-linear-gradient";
-import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-  TouchableOpacity,
-} from "react-native";
-import { MapPin, CaretDown, ArrowsClockwise } from "phosphor-react-native";
+import { StyleSheet, View, Text, ScrollView } from "react-native";
+import { MapPin } from "phosphor-react-native";
 import Sun from "../../assets/01d.svg";
 import Sun02d from "../../assets/02d.svg";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export function Home() {
   const [temperaturaAtual, setTemperaturaAtual] = useState("23");
@@ -23,15 +17,8 @@ export function Home() {
     <LinearGradient colors={["#4597d3", "#6506a4"]} style={styles.container}>
       <View style={styles.content}>
         <View style={styles.header}>
-          <View style={styles.headerLeft}>
-            <MapPin color="#fff" size={25} />
-            <Text style={styles.headerLeftText}>{local}</Text>
-            <CaretDown color="#fff" size={25} />
-          </View>
-
-          <TouchableOpacity>
-            <ArrowsClockwise color="#fff" size={25} />
-          </TouchableOpacity>
+          <MapPin color="#fff" size={25} />
+          <Text style={styles.headerText}>{local}</Text>
         </View>
 
         <View style={styles.main}>
@@ -46,7 +33,7 @@ export function Home() {
 
       <View style={styles.footer}>
         <Text style={styles.footerText}>Previsão para os próximos 7 dias</Text>
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{paddingHorizontal: 10}}>
           <View style={styles.footerCard}>
             <Text style={styles.cardTitle}>Seg</Text>
             <Sun02d width={40} height={40} />
@@ -106,18 +93,25 @@ const styles = StyleSheet.create({
   header: {
     width: "100%",
     flexDirection: "row",
-    justifyContent: "space-between",
-    paddingTop: 20,
-  },
-  headerLeft: {
-    flexDirection: "row",
+    justifyContent: "center",
     alignItems: "center",
+    paddingTop: 20,
     gap: 10,
   },
-  headerLeftText: {
+  headerText: {
     color: "#fff",
     fontSize: 18,
     fontWeight: "600",
+  },
+  modal: {
+    marginTop: 70,
+    marginLeft: 40,
+    width: 200,
+    borderRadius: 10,
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    borderWidth: 1,
+    borderColor: "#fff",
   },
   main: {
     paddingVertical: 70,
@@ -140,7 +134,7 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
   footer: {
-    paddingLeft: 40,
+    alignItems: 'center',
     width: "100%",
     gap: 10,
   },
